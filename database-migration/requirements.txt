@@ -1,0 +1,10 @@
+alembic==1.9.1
+greenlet==2.0.1
+init==0.1.0
+Mako==1.2.4
+MarkupSafe==2.1.1
+psycopg2-binary==2.9.5
+PyYAML==6.0
+SQLAlchemy==1.4.46
+terminal==0.4.0
+typing_extensions==4.4.0
