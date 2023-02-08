@@ -1,6 +1,12 @@
+from pathlib import Path
+import sys
+
+root_path = Path(__file__).parents[2]
+sys.path.append(str(root_path))
+
 from sqlalchemy import Column, Integer, String
 
-from database import Base
+from .database import Base
 
 
 class Profile(Base):

@@ -1,5 +1,11 @@
+from pathlib import Path
+import sys
+
+root_path = Path(__file__).parents[2]
+sys.path.append(str(root_path))
+
 from sqlalchemy.orm import Session
-from models import Profile
+from .models import Profile
 
 class ProfileDTO:
     @staticmethod
@@ -7,15 +13,19 @@ class ProfileDTO:
         return db.query(Profile).all()
     
     @staticmethod
-    def save(db: Session, profile: Profile) -> Profile:
-        if profile.id:
-            db.merge(profile)
-        else:
-            db.add(profile)
+    def create(db: Session, profile: Profile) -> Profile:
+    
+        db.add(profile)
         db.commit()
 
         return profile
     
+    def update(db: Session, profile: Profile) -> Profile:
+        db.merge(profile)
+        db.commit()
+        
+        return profile
+
     @staticmethod
     def get_by_id(db: Session, id: int) -> Profile:
         return db.query(Profile).filter(Profile.id == id).first()
@@ -27,7 +37,7 @@ class ProfileDTO:
     # Potencial para melhoria?
     @staticmethod
     def delete_by_id(db: Session, id: int) -> None:
-        profile = db.query(Profile).filter(Profile.id ==id).first
+        profile = db.query(Profile).filter(Profile.id == id).first()
         if profile is not None:
             db.delete(profile)
-            db.commit
+            db.commit()

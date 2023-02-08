@@ -9,6 +9,9 @@ class Profile(BaseModel):
 class ProfileRequest(Profile):
     ...
 
+class NewProfileRequest(Profile):
+    id:             int
+    
 class ProfileResponse(Profile):
     id:             int
     class Config:
